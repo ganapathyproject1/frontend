@@ -1,0 +1,25 @@
+<div class="chat-wrapper" *ngIf="showChatRoom();else noSelectedItem">
+  <div class="head">
+    <span class="float-left" class="back-btn" (click)="onBackButtonClick()">Back</span>
+    <h2>{{ selectedList?.title }}</h2>
+    <button class="float-left undo-btn btn btn-danger" (click)="onUndoClick()">undo</button>
+    <hr/>
+  </div>
+  <div class="body">
+    <div class="messages-wrapper">
+    <app-sub-item [items]="items" [selectedList]="selectedList" [itemType]="'main-item'" [undoClickEvent]="undoClickEvent"></app-sub-item>
+    </div>
+  </div>
+  <form #msgForm="ngForm" (submit)="onSendMessage()">
+    <div class="chat-box">
+      <input type="text" name="message" placeholder="Start typing message..." required [(ngModel)]="message">
+      <button class="btn main-btn" type="submit">Send</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #noSelectedItem>
+  <div class="no-selected-item">
+    <p>Chat Panel</p>
+  </div>
+</ng-template>
